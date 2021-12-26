@@ -9,7 +9,7 @@ namespace Core.Utilities.Interceptors
     {
         protected virtual void OnBefore(IInvocation ınvocation) { }
         protected virtual void OnAfter(IInvocation ınvocation) { }
-        protected virtual void OnException(IInvocation ınvocation) { }
+        protected virtual void OnException(IInvocation ınvocation, System.Exception e) { }
         protected virtual void OnSuccess(IInvocation ınvocation) { }
         public override void Intercept(IInvocation invocation)
         {
@@ -22,7 +22,7 @@ namespace Core.Utilities.Interceptors
             catch (Exception e)
             {
                 isSuccess = false;
-                OnException(invocation);
+                OnException(invocation, e);
                 throw;
             }
             finally
